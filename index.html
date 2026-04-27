@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANKH BEAUTY — Desperte a Deusa que Habita em Você</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;600&family=Cinzel+Decorative:wght@400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #080604;
+    --bg2:       #0e0b07;
+    --bg3:       #151009;
+    --gold:      #c9a058;
+    --gold-light:#e8c87a;
+    --gold-dim:  #7a5e2a;
+    --terra:     #b05a38;
+    --terra-dim: #6e3520;
+    --terra-light:#d47a55;
+    --cream:     #f0e6d0;
+    --cream-dim: #a8926e;
+    --card-bg:   #100d07;
+    --border:    rgba(201,160,88,0.14);
+    --border-h:  rgba(201,160,88,0.45);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* GRAIN */
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events:none; z-index:9999; opacity:0.45;
+  }
+
+  /* ═══════════════════ NAVBAR ═══════════════════ */
+  nav {
+    position:sticky; top:0; z-index:200;
+    background: rgba(8,6,4,0.94);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    display:flex; align-items:center; justify-content:space-between;
+    height: 62px;
+  }
+
+  .nav-logo { display:flex; flex-direction:column; align-items:flex-start; gap:2px; }
+  .nav-logo-ankh {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.35rem;
+    letter-spacing: 0.18em;
+    color: var(--gold-light);
+    line-height:1;
+  }
+  .nav-logo-sub {
+    font-size: 0.46rem;
+    letter-spacing: 0.52em;
+    color: var(--gold-dim);
+    text-transform:uppercase;
+  }
+
+  .nav-icon {
+    width:34px; height:34px;
+    display:flex; flex-direction:column; justify-content:center;
+    gap:5px; cursor:pointer; padding:4px;
+  }
+  .nav-icon span {
+    display:block; height:1px;
+    background: var(--gold);
+    transition: all 0.3s ease;
+  }
+  .nav-icon span:nth-child(2){ width:68%; margin-left:auto; }
+
+  /* ═══════════════════ HERO ═══════════════════ */
+  .hero {
+    position:relative;
+    min-height: 92vh;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    padding: 40px 24px 52px;
+    overflow:hidden;
+  }
+
+  .hero-bg {
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 90% 70% at 65% 15%, rgba(176,90,56,0.09) 0%, transparent 65%),
+      radial-gradient(ellipse 70% 90% at 25% 85%, rgba(100,50,15,0.15) 0%, transparent 60%),
+      linear-gradient(180deg, #080604 0%, #100900 55%, #080604 100%);
+  }
+
+  /* Hieroglyph pattern SVG background */
+  .hero-pattern {
+    position:absolute; inset:0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a058' fill-opacity='0.03'%3E%3Cpath d='M30 5 L35 15 L45 15 L37 22 L40 32 L30 26 L20 32 L23 22 L15 15 L25 15 Z'/%3E%3Ccircle cx='30' cy='52' r='4' fill='none' stroke='%23c9a058' stroke-opacity='0.03' stroke-width='1'/%3E%3Cline x1='30' y1='48' x2='30' y2='56' stroke='%23c9a058' stroke-opacity='0.03' stroke-width='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events:none;
+  }
+
+  .hero-image-wrap {
+    position:absolute; inset:0; overflow:hidden;
+  }
+  .hero-image-wrap img {
+    width:100%; height:100%;
+    object-fit:cover; object-position:center top;
+    opacity:0.2;
+    filter: sepia(60%) contrast(1.15) brightness(0.75);
+  }
+  /* Placeholder when no image */
+  .hero-image-placeholder {
+    width:100%; height:100%;
+    display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(135deg, #0e0900 0%, #1a1000 50%, #0e0900 100%);
+  }
+  .hero-image-placeholder svg {
+    width: 60%; max-width:340px;
+    opacity:0.07;
+  }
+
+  .hero-overlay {
+    position:absolute; inset:0;
+    background: linear-gradient(
+      to bottom,
+      rgba(8,6,4,0.25) 0%,
+      rgba(8,6,4,0.05) 35%,
+      rgba(8,6,4,0.82) 75%,
+      rgba(8,6,4,1) 100%
+    );
+  }
+
+  .hero-content {
+    position:relative; z-index:2;
+    animation: fadeUp 1.1s ease both;
+  }
+
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:10px;
+    font-size: 0.55rem;
+    letter-spacing: 0.55em;
+    color: var(--gold);
+    border: 1px solid var(--border-h);
+    padding: 7px 14px;
+    margin-bottom: 22px;
+    text-transform:uppercase;
+  }
+  .hero-badge::before {
+    content:'𓂀';
+    font-size:0.9rem;
+    opacity:0.8;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.6em;
+    color: var(--terra-light);
+    text-transform:uppercase;
+    margin-bottom: 14px;
+  }
+
+  .hero-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2.2rem, 11vw, 4rem);
+    font-weight: 400;
+    line-height: 1.08;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+  .hero-title span { color: var(--gold-light); }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style:italic;
+    letter-spacing: 0.08em;
+    color: var(--gold-dim);
+    margin-bottom: 26px;
+    text-transform:lowercase;
+  }
+
+  .hero-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.08rem;
+    line-height: 1.8;
+    color: rgba(240,230,208,0.72);
+    max-width: 310px;
+    margin-bottom: 38px;
+  }
+
+  .btn-gold {
+    display:inline-flex; align-items:center; gap:12px;
+    background: var(--gold);
+    color: #080604;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-transform:uppercase;
+    text-decoration:none;
+    padding: 15px 28px;
+    border:none; cursor:pointer;
+    transition: all 0.35s ease;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .btn-gold:hover {
+    background: var(--gold-light);
+    letter-spacing: 0.5em;
+  }
+  .btn-gold::after { content:'→'; transition:transform 0.3s ease; }
+
+  .hero-scroll {
+    position:absolute; bottom:28px; right:24px;
+    display:flex; flex-direction:column; align-items:center; gap:8px; z-index:2;
+  }
+  .hero-scroll span {
+    font-size:0.46rem; letter-spacing:0.5em; color:var(--gold-dim);
+    text-transform:uppercase; writing-mode:vertical-rl;
+  }
+  .hero-scroll-line {
+    width:1px; height:50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2.2s ease infinite;
+  }
+  @keyframes scrollPulse {
+    0%,100%{opacity:0.25;transform:scaleY(1)}
+    50%{opacity:1;transform:scaleY(0.55)}
+  }
+
+  /* ═══════════════════ DIVIDER ═══════════════════ */
+  .divider {
+    display:flex; align-items:center; gap:14px;
+    padding: 0 24px; margin: 44px 0;
+  }
+  .div-line { flex:1; height:1px; background:var(--border); }
+  .div-ankh {
+    font-size:1.2rem; color:var(--gold);
+    flex-shrink:0; opacity:0.7;
+    text-shadow: 0 0 12px rgba(201,160,88,0.4);
+  }
+
+  /* ═══════════════════ SECTION COMMONS ═══════════════════ */
+  .sec-label {
+    font-family:'Cinzel', serif;
+    font-size:0.52rem; letter-spacing:0.6em;
+    color:var(--terra-light); text-transform:uppercase; margin-bottom:14px;
+  }
+  .sec-title {
+    font-family:'Cinzel', serif;
+    font-size: clamp(1.7rem, 7.5vw, 2.8rem);
+    font-weight:400; line-height:1.2;
+    color: var(--cream); margin-bottom:20px;
+  }
+  .sec-title em {
+    font-style:italic;
+    font-family:'Cormorant Garamond', serif;
+    color:var(--gold-light);
+  }
+  .sec-body {
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.05rem; line-height:1.88;
+    color:rgba(240,230,208,0.68);
+    margin-bottom:26px;
+  }
+
+  /* ═══════════════════ MANIFESTO QUOTE ═══════════════════ */
+  .manifesto {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 28px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .manifesto::before {
+    content:'𓂀';
+    position:absolute; top:16px; left:50%; transform:translateX(-50%);
+    font-size:2rem; color:var(--gold); opacity:0.12;
+  }
+  .manifesto-quote {
+    font-family:'Cormorant Garamond', serif;
+    font-size: clamp(1.35rem, 5vw, 1.9rem);
+    font-style:italic; font-weight:300;
+    line-height:1.6;
+    color:var(--cream);
+    max-width:340px; margin:0 auto 18px;
+  }
+  .manifesto-quote em { color:var(--gold-light); font-style:normal; }
+  .manifesto-attr {
+    font-size:0.52rem; letter-spacing:0.5em;
+    color:var(--gold-dim); text-transform:uppercase;
+  }
+
+  /* ═══════════════════ ABOUT ═══════════════════ */
+  .about { padding: 0 24px 64px; }
+
+  .brand-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:200px 140px;
+    gap:6px; margin:32px 0;
+  }
+  .brand-grid-item {
+    overflow:hidden; position:relative;
+    background:var(--bg3);
+  }
+  .brand-grid-item:first-child { grid-row:span 2; }
+  .brand-grid-item img {
+    width:100%; height:100%;
+    object-fit:cover;
+    filter:sepia(45%) contrast(1.1) brightness(0.78);
+    transition:transform 0.7s ease, filter 0.6s ease;
+  }
+  .brand-grid-item:hover img {
+    transform:scale(1.05);
+    filter:sepia(25%) contrast(1.1) brightness(0.88);
+  }
+  .brand-grid-item::after {
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(8,6,4,0.5) 0%, transparent 55%);
+    pointer-events:none;
+  }
+  /* Image placeholder */
+  .img-placeholder {
+    width:100%; height:100%;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, #100d07 0%, #1a1208 100%);
+    font-size:2rem; color:var(--gold-dim); opacity:0.3;
+  }
+
+  .pillars {
+    display:flex; flex-direction:column; gap:1px;
+    margin:32px 0;
+    border:1px solid var(--border);
+  }
+  .pillar {
+    display:flex; align-items:flex-start; gap:18px;
+    padding:20px; background:var(--card-bg);
+    transition:background 0.3s ease;
+  }
+  .pillar:hover { background:#1a1408; }
+  .pillar-glyph {
+    font-size:1.8rem; color:var(--gold-dim); flex-shrink:0; width:32px;
+    line-height:1; margin-top:2px; opacity:0.7;
+  }
+  .pillar-text h4 {
+    font-family:'Cinzel', serif;
+    font-size:0.6rem; letter-spacing:0.4em;
+    color:var(--gold); text-transform:uppercase; margin-bottom:7px;
+  }
+  .pillar-text p {
+    font-family:'Cormorant Garamond', serif;
+    font-size:0.95rem; line-height:1.65; color:var(--cream-dim);
+  }
+
+  /* ═══════════════════ BANNER ═══════════════════ */
+  .banner {
+    margin:16px 0; position:relative;
+    height:200px; overflow:hidden;
+  }
+  .banner img {
+    width:100%; height:100%;
+    object-fit:cover;
+    filter:brightness(0.4) sepia(40%);
+  }
+  .banner-placeholder {
+    width:100%; height:100%;
+    background: linear-gradient(135deg, #120a00 0%, #1e1200 50%, #120a00 100%);
+    display:flex; align-items:center; justify-content:center;
+    font-size:4rem; color:var(--gold); opacity:0.1;
+  }
+  .banner-content {
+    position:absolute; inset:0;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    text-align:center; padding:24px;
+  }
+  .banner-content p {
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.45rem; font-style:italic; font-weight:300;
+    color:var(--cream); line-height:1.45; max-width:280px;
+  }
+  .banner-content span {
+    display:block; font-size:0.5rem; letter-spacing:0.5em;
+    color:var(--gold); margin-top:10px; text-transform:uppercase;
+  }
+
+  /* ═══════════════════ PRODUCTS ═══════════════════ */
+  .products { padding: 0 24px 88px; }
+  .products-header { margin-bottom:34px; }
+
+  .products-grid {
+    display:flex; flex-direction:column; gap:20px;
+  }
+
+  .product-card {
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    overflow:hidden;
+    position:relative;
+    transition:border-color 0.4s ease, transform 0.35s ease;
+  }
+  .product-card:hover {
+    border-color:var(--border-h);
+    transform:translateY(-3px);
+  }
+
+  /* Corner decoration */
+  .product-card::before,
+  .product-card::after {
+    content:'';
+    position:absolute;
+    width:14px; height:14px;
+    border-color:var(--gold-dim);
+    border-style:solid;
+    z-index:3;
+    transition:border-color 0.4s ease;
+  }
+  .product-card::before {
+    top:10px; right:10px;
+    border-width:1px 1px 0 0;
+  }
+  .product-card::after {
+    bottom:10px; left:10px;
+    border-width:0 0 1px 1px;
+  }
+  .product-card:hover::before,
+  .product-card:hover::after {
+    border-color:var(--gold);
+  }
+
+  .product-image-wrap {
+    position:relative; height:240px;
+    overflow:hidden; background:var(--bg3);
+  }
+  .product-image-wrap img {
+    width:100%; height:100%;
+    object-fit:cover;
+    filter:sepia(20%) brightness(0.88) contrast(1.05);
+    transition:transform 0.7s ease;
+  }
+  .product-card:hover .product-image-wrap img {
+    transform:scale(1.06);
+  }
+  .product-image-placeholder {
+    width:100%; height:100%;
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column; gap:8px;
+    background:linear-gradient(145deg, #100d07 0%, #1c1409 100%);
+  }
+  .product-image-placeholder .glyph {
+    font-size:3rem; color:var(--gold-dim); opacity:0.4;
+  }
+  .product-image-placeholder .img-hint {
+    font-size:0.5rem; letter-spacing:0.4em;
+    color:var(--gold-dim); opacity:0.5; text-transform:uppercase;
+    text-align:center; padding:0 16px;
+  }
+
+  .product-badge {
+    position:absolute; top:14px; left:14px;
+    background:rgba(8,6,4,0.88);
+    border:1px solid var(--gold-dim);
+    color:var(--gold); font-family:'Cinzel', serif;
+    font-size:0.46rem; letter-spacing:0.45em;
+    padding:5px 10px; text-transform:uppercase; z-index:2;
+  }
+  .product-badge.terra {
+    border-color:var(--terra-dim);
+    color:var(--terra-light);
+  }
+
+  .product-body { padding:24px 20px 20px; }
+
+  .product-name {
+    font-family:'Cinzel', serif;
+    font-size:1.25rem; font-weight:400;
+    color:var(--cream); margin-bottom:5px; line-height:1.25;
+  }
+  .product-sub {
+    font-size:0.53rem; letter-spacing:0.45em;
+    color:var(--gold-dim); text-transform:uppercase; margin-bottom:14px;
+  }
+  .product-desc {
+    font-family:'Cormorant Garamond', serif;
+    font-size:0.97rem; line-height:1.75;
+    color:rgba(240,230,208,0.62); margin-bottom:16px;
+  }
+  .product-detail {
+    background:rgba(201,160,88,0.04);
+    border-left:2px solid var(--gold-dim);
+    padding:11px 14px; margin-bottom:20px;
+  }
+  .product-detail h5 {
+    font-family:'Cinzel', serif;
+    font-size:0.48rem; letter-spacing:0.5em;
+    color:var(--gold); text-transform:uppercase; margin-bottom:6px;
+  }
+  .product-detail p {
+    font-family:'Cormorant Garamond', serif;
+    font-size:0.9rem; line-height:1.6; color:var(--cream-dim);
+  }
+
+  .product-footer {
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:16px; border-top:1px solid var(--border);
+  }
+  .product-price { display:flex; flex-direction:column; }
+  .price-label {
+    font-size:0.46rem; letter-spacing:0.48em;
+    color:var(--gold-dim); text-transform:uppercase;
+  }
+  .price-value {
+    font-family:'Cinzel', serif;
+    font-size:1.45rem; font-weight:400;
+    color:var(--gold-light); line-height:1.1;
+  }
+
+  .btn-add {
+    background:transparent;
+    border:1px solid var(--gold-dim);
+    color:var(--gold);
+    font-family:'Cinzel', serif;
+    font-size:0.5rem; letter-spacing:0.4em;
+    text-transform:uppercase;
+    padding:11px 16px; cursor:pointer;
+    transition:all 0.3s ease;
+    clip-path:polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  }
+  .btn-add:hover {
+    background:var(--gold); border-color:var(--gold); color:#080604;
+  }
+
+  /* DESTAQUE — Kit */
+  .kit-card {
+    background: linear-gradient(145deg, #110d05 0%, #1c1408 100%);
+    border:1px solid var(--gold-dim);
+    border-image: linear-gradient(145deg, var(--gold-dim), var(--terra-dim), var(--gold-dim)) 1;
+    padding:28px 22px;
+    position:relative; margin:8px 0; overflow:hidden;
+  }
+  .kit-card::before {
+    content:'';
+    position:absolute; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(to right, transparent, var(--gold), var(--terra-light), var(--gold), transparent);
+  }
+  .kit-label {
+    display:inline-block;
+    font-family:'Cinzel', serif;
+    font-size:0.48rem; letter-spacing:0.55em;
+    color:var(--terra-light); border:1px solid var(--terra-dim);
+    padding:5px 12px; margin-bottom:18px; text-transform:uppercase;
+  }
+  .kit-title {
+    font-family:'Cinzel Decorative', serif;
+    font-size:clamp(1.4rem, 6vw, 2rem);
+    color:var(--cream); margin-bottom:8px; line-height:1.2;
+  }
+  .kit-sub {
+    font-size:0.55rem; letter-spacing:0.5em;
+    color:var(--gold-dim); text-transform:uppercase; margin-bottom:18px;
+  }
+  .kit-desc {
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.05rem; line-height:1.82;
+    color:rgba(240,230,208,0.7); margin-bottom:20px;
+  }
+  .kit-includes {
+    display:flex; flex-direction:column; gap:8px; margin-bottom:24px;
+  }
+  .kit-item {
+    display:flex; align-items:center; gap:12px;
+  }
+  .kit-item-dot {
+    width:6px; height:6px; flex-shrink:0;
+    background:var(--gold-dim);
+    clip-path:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+  .kit-item-text {
+    font-family:'Cormorant Garamond', serif;
+    font-size:0.95rem; color:var(--cream-dim);
+  }
+  .kit-footer {
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:20px; border-top:1px solid rgba(201,160,88,0.12);
+  }
+  .kit-price { display:flex; flex-direction:column; }
+  .kit-price .price-value {
+    font-size:1.8rem; color:var(--gold-light);
+  }
+  .kit-price .price-orig {
+    font-family:'Cormorant Garamond', serif;
+    font-size:0.85rem; color:var(--gold-dim);
+    text-decoration:line-through; opacity:0.7;
+  }
+
+  /* ═══════════════════ SIGNIFICADO ═══════════════════ */
+  .meaning {
+    background:var(--bg2);
+    border-top:1px solid var(--border);
+    padding: 56px 28px;
+    text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .meaning::before {
+    content:'𓋹';
+    position:absolute; left:50%; transform:translateX(-50%);
+    font-size:8rem; top:-10px;
+    color:var(--gold); opacity:0.04;
+    pointer-events:none;
+  }
+  .meaning-ankh {
+    font-size:2.5rem; margin-bottom:18px;
+    color:var(--gold); opacity:0.65;
+    text-shadow: 0 0 20px rgba(201,160,88,0.3);
+  }
+  .meaning-text {
+    font-family:'Cormorant Garamond', serif;
+    font-size:clamp(1.1rem, 4.5vw, 1.55rem);
+    font-style:italic; font-weight:300;
+    line-height:1.7; color:var(--cream);
+    max-width:340px; margin:0 auto 20px;
+  }
+  .meaning-text em { color:var(--gold-light); font-style:normal; }
+  .meaning-caption {
+    font-size:0.5rem; letter-spacing:0.55em;
+    color:var(--terra-light); text-transform:uppercase;
+  }
+
+  /* ═══════════════════ FOOTER ═══════════════════ */
+  footer {
+    background:#050402;
+    border-top:1px solid var(--border);
+    padding:52px 24px 38px;
+    text-align:center;
+  }
+  .footer-logo {
+    font-family:'Cinzel Decorative', serif;
+    font-size:1.6rem; letter-spacing:0.12em;
+    color:var(--gold-light); margin-bottom:4px;
+  }
+  .footer-tagline {
+    font-family:'Cormorant Garamond', serif;
+    font-size:0.9rem; font-style:italic;
+    color:var(--gold-dim); margin-bottom:8px;
+  }
+  .footer-slogan {
+    font-size:0.5rem; letter-spacing:0.5em;
+    color:var(--terra-dim); text-transform:uppercase; margin-bottom:34px;
+  }
+  .footer-links {
+    display:flex; justify-content:center;
+    gap:20px; margin-bottom:36px; flex-wrap:wrap;
+  }
+  .footer-links a {
+    font-family:'Cinzel', serif;
+    font-size:0.52rem; letter-spacing:0.38em;
+    color:var(--cream-dim); text-decoration:none;
+    text-transform:uppercase; transition:color 0.3s ease;
+  }
+  .footer-links a:hover { color:var(--gold); }
+  .footer-divider { height:1px; background:var(--border); margin-bottom:22px; }
+  .footer-copy {
+    font-size:0.5rem; letter-spacing:0.28em;
+    color:rgba(168,146,110,0.35); text-transform:uppercase;
+  }
+
+  /* ═══════════════════ ANIMATIONS ═══════════════════ */
+  @keyframes fadeUp {
+    from{opacity:0;transform:translateY(32px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+  .reveal {
+    opacity:0; transform:translateY(26px);
+    transition:opacity 0.75s ease, transform 0.75s ease;
+  }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* ═══════════════════ RESPONSIVE ═══════════════════ */
+  @media(min-width:480px){
+    .products-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+    .product-image-wrap { height:200px; }
+    .brand-grid { grid-template-rows:220px 160px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-ankh">ANKH BEAUTY</div>
+    <div class="nav-logo-sub">Cosméticos Inspirados no Egito</div>
+  </div>
+  <div class="nav-icon" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+
+  <div class="hero-image-wrap">
+    <!--
+      COMO ADICIONAR SUA IMAGEM HERO:
+      1. Coloque sua imagem na mesma pasta que este arquivo HTML
+      2. Substitua o conteúdo abaixo pela tag de imagem:
+         <img src="sua-imagem-hero.jpg" alt="Ankh Beauty">
+    -->
+    <div class="hero-image-placeholder">
+      <svg viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ankh symbol -->
+        <ellipse cx="100" cy="80" rx="40" ry="55" stroke="#c9a058" stroke-width="12"/>
+        <rect x="88" y="130" width="24" height="120" fill="#c9a058"/>
+        <rect x="40" y="155" width="120" height="24" fill="#c9a058"/>
+      </svg>
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">Coleção Sagrada 2025</div>
+    <p class="hero-eyebrow">𓋹 Ankh — A Chave da Vida</p>
+    <h1 class="hero-title">
+      <span>Ankh</span><br>Beauty
+    </h1>
+    <p class="hero-tagline">desperte a deusa que habita em você</p>
+    <p class="hero-desc">
+      Cosméticos inspirados no misticismo do Egito Antigo. Cada produto é um ritual, cada traço é uma oferenda à deusa que vive em você.
+    </p>
+    <a href="#produtos" class="btn-gold">Ver Coleção</a>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ══ MANIFESTO ══ -->
+<div class="manifesto reveal">
+  <p class="manifesto-quote">
+    Assim como o Ankh é a <em>"Chave da Vida"</em>, sua maquiagem é a <em>"Chave para a sua Expressão"</em>.
+  </p>
+  <span class="manifesto-attr">𓂀 Manifesto Ankh Beauty 𓂀</span>
+</div>
+
+<!-- ══ SOBRE ══ -->
+<section class="about">
+  <div class="divider">
+    <div class="div-line"></div>
+    <div class="div-ankh">𓋹</div>
+    <div class="div-line"></div>
+  </div>
+
+  <div class="reveal">
+    <p class="sec-label">Nossa Essência</p>
+    <h2 class="sec-title">Mais que cosméticos,<br>um <em>ritual sagrado</em></h2>
+    <p class="sec-body">
+      A Ankh Beauty nasceu da admiração pela beleza atemporal do Egito Antigo — uma civilização que compreendia a maquiagem como poder, proteção e expressão divina. Cada produto carrega esse legado: não existe para esconder, mas para revelar quem você verdadeiramente é.
+    </p>
+    <p class="sec-body">
+      Ela não serve para esconder quem você é, mas para dar vida à sua melhor versão. Como sacerdotisas egípcias que se adornavam para honrar as deusas, você merece uma maquiagem à altura da sua divindade.
+    </p>
+  </div>
+
+  <!-- FOTOS DA MARCA -->
+  <div class="brand-grid reveal">
+    <div class="brand-grid-item">
+      <!--
+        IMAGEM DA MARCA 1 (imagem maior à esquerda)
+        Para adicionar: <img src="sua-foto-marca-1.jpg" alt="Ankh Beauty">
+      -->
+      <div class="img-placeholder">𓂀</div>
+    </div>
+    <div class="brand-grid-item">
+      <!--
+        IMAGEM DA MARCA 2
+        Para adicionar: <img src="sua-foto-marca-2.jpg" alt="Ankh Beauty">
+      -->
+      <div class="img-placeholder">𓋹</div>
+    </div>
+    <div class="brand-grid-item">
+      <!--
+        IMAGEM DA MARCA 3
+        Para adicionar: <img src="sua-foto-marca-3.jpg" alt="Ankh Beauty">
+      -->
+      <div class="img-placeholder">𓆣</div>
+    </div>
+  </div>
+
+  <!-- PILARES -->
+  <div class="pillars reveal">
+    <div class="pillar">
+      <div class="pillar-glyph">𓋹</div>
+      <div class="pillar-text">
+        <h4>O Símbolo Ankh</h4>
+        <p>O Ankh é a chave da vida eterna no Egito Antigo. Nossa marca carrega esse símbolo como promessa: beleza que transcende o tempo.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-glyph">𓂀</div>
+      <div class="pillar-text">
+        <h4>O Olho de Hórus</h4>
+        <p>Símbolo de proteção, saúde e restauração. Cada produto da Ankh Beauty foi pensado para proteger e realçar a sua essência única.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-glyph">𓆣</div>
+      <div class="pillar-text">
+        <h4>O Escaravelho Sagrado</h4>
+        <p>Símbolo de transformação e renascimento. Sua maquiagem não muda quem você é — transforma como o mundo te vê.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BANNER ══ -->
+<div class="banner">
+  <!--
+    IMAGEM DO BANNER:
+    Para adicionar: <img src="seu-banner.jpg" alt="Ankh Beauty Banner">
+  -->
+  <div class="banner-placeholder">𓋹</div>
+  <div class="banner-content">
+    <p>"Desperte a deusa que habita em você."</p>
+    <span>— Ankh Beauty</span>
+  </div>
+</div>
+
+<!-- ══ PRODUTOS ══ -->
+<section class="products" id="produtos">
+  <div class="divider">
+    <div class="div-line"></div>
+    <div class="div-ankh">𓋹</div>
+    <div class="div-line"></div>
+  </div>
+
+  <div class="products-header reveal">
+    <p class="sec-label">Nossa Coleção</p>
+    <h2 class="sec-title">Os <em>rituais</em><br>que te transformam</h2>
+  </div>
+
+  <!-- KIT PRINCIPAL — DESTAQUE -->
+  <div class="kit-card reveal" style="margin-bottom:24px;">
+    <div class="kit-label">★ Kit Principal — Mais Vendido</div>
+    <h3 class="kit-title">Kit Deusa do Nilo</h3>
+    <p class="kit-sub">Paleta · Blush · Delineado</p>
+    <p class="kit-desc">
+      O trio sagrado da Ankh Beauty reunido em um só ritual de beleza. A combinação perfeita para quem quer despertar a deusa que habita em si — do primeiro traço ao toque final.
+    </p>
+    <div class="kit-includes">
+      <div class="kit-item">
+        <div class="kit-item-dot"></div>
+        <span class="kit-item-text">Paleta de Sombras — tons do deserto ao pôr do sol egípcio</span>
+      </div>
+      <div class="kit-item">
+        <div class="kit-item-dot"></div>
+        <span class="kit-item-text">Blush Escaravelho — terracota sagrado em embalagem colecionável</span>
+      </div>
+      <div class="kit-item">
+        <div class="kit-item-dot"></div>
+        <span class="kit-item-text">Delineador Ankh — preto profundo em embalagem dourada</span>
+      </div>
+    </div>
+    <!--
+      IMAGEM DO KIT:
+      Adicione aqui se quiser uma foto do kit
+    -->
+    <div class="kit-footer">
+      <div class="kit-price">
+        <span class="price-orig">R$ 385 separados</span>
+        <span class="price-value">R$ 289</span>
+        <span class="price-label">Kit Completo</span>
+      </div>
+      <button class="btn-add">Adquirir Kit</button>
+    </div>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- PALETA DE SOMBRAS -->
+    <div class="product-card reveal">
+      <div class="product-image-wrap">
+        <!--
+          FOTO DA PALETA:
+          Substitua por: <img src="paleta-sombras.jpg" alt="Paleta de Sombras Ankh Beauty">
+        -->
+        <div class="product-image-placeholder">
+          <div class="glyph">𓂀</div>
+          <div class="img-hint">Adicione a foto da paleta</div>
+        </div>
+        <div class="product-badge">Coleção</div>
+      </div>
+      <div class="product-body">
+        <h3 class="product-name">Paleta Nefertiti</h3>
+        <p class="product-sub">Sombras · Olhos</p>
+        <p class="product-desc">Tons que passeiam pelas areias douradas do deserto até o azul profundo do Nilo. Uma paleta para criar do olhar mais sutil ao traço mais dramático.</p>
+        <div class="product-detail">
+          <h5>Tonalidades</h5>
+          <p>Areia, ouro, terracota, cobre, marrom, preto delineado e brilho dourado</p>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-label">A partir de</span>
+            <span class="price-value">R$ 139</span>
+          </div>
+          <button class="btn-add">Adicionar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLUSH ESCARAVELHO -->
+    <div class="product-card reveal">
+      <div class="product-image-wrap">
+        <!--
+          FOTO DO BLUSH ESCARAVELHO:
+          Substitua por: <img src="blush-escaravelho.jpg" alt="Blush Escaravelho">
+        -->
+        <div class="product-image-placeholder">
+          <div class="glyph">𓆣</div>
+          <div class="img-hint">Adicione a foto do blush</div>
+        </div>
+        <div class="product-badge terra">Exclusivo</div>
+      </div>
+      <div class="product-body">
+        <h3 class="product-name">Blush Khepri</h3>
+        <p class="product-sub">Blush · Terracota · Formato Escaravelho</p>
+        <p class="product-desc">Blush na cor terracota sagrada, compactado em formato de escaravelho — símbolo egípcio de transformação. Uma obra de arte que você usa.</p>
+        <div class="product-detail">
+          <h5>Formato & Cor</h5>
+          <p>Escaravelho colecionável · Terracota quente com micro-shimmer dourado</p>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-label">A partir de</span>
+            <span class="price-value">R$ 118</span>
+          </div>
+          <button class="btn-add">Adicionar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DELINEADOR ANKH -->
+    <div class="product-card reveal">
+      <div class="product-image-wrap">
+        <!--
+          FOTO DO DELINEADOR:
+          Substitua por: <img src="delineador-ankh.jpg" alt="Delineador Ankh">
+        -->
+        <div class="product-image-placeholder">
+          <div class="glyph">𓋹</div>
+          <div class="img-hint">Adicione a foto do delineador</div>
+        </div>
+        <div class="product-badge">Best Seller</div>
+      </div>
+      <div class="product-body">
+        <h3 class="product-name">Delineador Ra</h3>
+        <p class="product-sub">Delineador · Preto · Embalagem Dourada</p>
+        <p class="product-desc">Delineador líquido de alta precisão em embalagem dourada no formato Ankh — a Chave da Vida. Preto profundo, fixação de até 24h, resistente à água.</p>
+        <div class="product-detail">
+          <h5>Embalagem & Fórmula</h5>
+          <p>Formato Ankh dourado · Preto intenso · À prova d'água · 24h de duração</p>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-label">A partir de</span>
+            <span class="price-value">R$ 128</span>
+          </div>
+          <button class="btn-add">Adicionar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIP BALM PIRÂMIDE -->
+    <div class="product-card reveal">
+      <div class="product-image-wrap">
+        <!--
+          FOTO DO LIP BALM:
+          Substitua por: <img src="lipbalm-piramide.jpg" alt="Lip Balm Pirâmide">
+        -->
+        <div class="product-image-placeholder">
+          <div class="glyph">△</div>
+          <div class="img-hint">Adicione a foto do lip balm</div>
+        </div>
+      </div>
+      <div class="product-body">
+        <h3 class="product-name">Lip Balm Gizé</h3>
+        <p class="product-sub">Lip Balm · Formato Pirâmide</p>
+        <p class="product-desc">Hidratação divina para os lábios em embalagem piramidal inspirada nas pirâmides de Gizé. Toque suave, brilho sutil e aroma de mel egípcio.</p>
+        <div class="product-detail">
+          <h5>Formato & Sensação</h5>
+          <p>Pirâmide · Fórmula hidratante · Mel e argão · Brilho natural</p>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-label">A partir de</span>
+            <span class="price-value">R$ 68</span>
+          </div>
+          <button class="btn-add">Adicionar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ESPELHO ANKH -->
+    <div class="product-card reveal">
+      <div class="product-image-wrap">
+        <!--
+          FOTO DO ESPELHO:
+          Substitua por: <img src="espelho-ankh.jpg" alt="Espelho Ankh">
+        -->
+        <div class="product-image-placeholder">
+          <div class="glyph">𓋹</div>
+          <div class="img-hint">Adicione a foto do espelho</div>
+        </div>
+        <div class="product-badge">Acessório</div>
+      </div>
+      <div class="product-body">
+        <h3 class="product-name">Espelho Ísis</h3>
+        <p class="product-sub">Espelho · Formato Ankh · Detalhes em Joias</p>
+        <p class="product-desc">Espelho de bolsa no formato do sagrado Ankh, com acabamento dourado e incrustações decorativas no estilo das joias dos faraós. Arte que você carrega.</p>
+        <div class="product-detail">
+          <h5>Acabamento</h5>
+          <p>Formato Ankh · Dourado fosco · Detalhes em joias · Espelho duplo</p>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-label">A partir de</span>
+            <span class="price-value">R$ 89</span>
+          </div>
+          <button class="btn-add">Adicionar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PERFUME SACERDOTE -->
+    <div class="product-card reveal">
+      <div class="product-image-wrap">
+        <!--
+          FOTO DO PERFUME:
+          Substitua por: <img src="perfume-sacerdote.jpg" alt="Perfume Sacerdote">
+        -->
+        <div class="product-image-placeholder">
+          <div class="glyph">𓁹</div>
+          <div class="img-hint">Adicione a foto do perfume</div>
+        </div>
+        <div class="product-badge terra">Novo</div>
+      </div>
+      <div class="product-body">
+        <h3 class="product-name">Perfume Amun</h3>
+        <p class="product-sub">Eau de Parfum · Formato Sacerdote</p>
+        <p class="product-desc">Frasco inspirado nas estátuas dos grandes sacerdotes egípcios. Uma fragrância que mistura mirra, incenso, âmbar e flor de lótus — o perfume dos deuses.</p>
+        <div class="product-detail">
+          <h5>Notas Olfativas</h5>
+          <p>Mirra egípcia · Incenso · Âmbar dourado · Lótus azul · Sândalo sagrado</p>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-label">A partir de</span>
+            <span class="price-value">R$ 198</span>
+          </div>
+          <button class="btn-add">Adicionar</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ SIGNIFICADO ══ -->
+<div class="meaning reveal">
+  <div class="meaning-ankh">𓋹</div>
+  <p class="meaning-text">
+    Ela não serve para esconder quem você é,<br>
+    mas para dar <em>vida</em> à sua melhor versão.
+  </p>
+  <span class="meaning-caption">𓂀 O Significado da Ankh Beauty 𓂀</span>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-logo">𓋹 ANKH BEAUTY</div>
+  <div class="footer-tagline">Desperte a deusa que habita em você</div>
+  <div class="footer-slogan">Cosméticos Inspirados no Egito Antigo</div>
+  <div class="footer-links">
+    <a href="#">Nossa História</a>
+    <a href="#">Produtos</a>
+    <a href="#">O Simbolismo</a>
+    <a href="#">Contato</a>
+    <a href="#">Instagram</a>
+  </div>
+  <div class="footer-divider"></div>
+  <p class="footer-copy">© 2025 Ankh Beauty — Todos os direitos reservados</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Product card stagger
+  const cards = document.querySelectorAll('.product-card');
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, i * 110);
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.06 });
+  cards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(26px)';
+    card.style.transition = 'opacity 0.65s ease, transform 0.65s ease, border-color 0.4s ease';
+    cardObserver.observe(card);
+  });
+
+  // Button feedback
+  document.querySelectorAll('.btn-add').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const original = this.textContent;
+      this.textContent = '✓ Adicionado';
+      this.style.background = 'var(--gold)';
+      this.style.color = '#080604';
+      setTimeout(() => {
+        this.textContent = original;
+        this.style.background = '';
+        this.style.color = '';
+      }, 1800);
+    });
+  });
+</script>
+
+</body>
+</html>
